@@ -6,7 +6,9 @@
               class="text-center"
               >
               <b-card-text>
-                <span v-if="sentences.length > 0" v-for="sentence in sentences">{{sentence}}. </span>
+                <span v-bind:key="sentence" v-for="sentence in sentences">
+                  {{sentence}}. 
+                </span>
                 <span>{{runtimeTranscription}}</span>
               </b-card-text>
               <div slot="footer" class="row">
@@ -66,11 +68,11 @@ export default {
       recognition.lang = this.lang
       recognition.interimResults = true
 
-      recognition.addEventListener('speechstart', event => {
+      recognition.addEventListener('speechstart', () => {
         this.speaking = true
       })
 
-      recognition.addEventListener('speechend', event => {
+      recognition.addEventListener('speechend', () => {
         this.speaking = false
       })
 
